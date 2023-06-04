@@ -5,12 +5,6 @@ import com.java8.POJO.User;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- * @author Lenovo
- * @date 2023/6/2
- * @time 16:02
- * @project java_算法
- **/
 public class TestLambdaSort {
 
     public static void main(String[] args) {
