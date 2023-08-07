@@ -1,5 +1,11 @@
 package com.LinkGraph;
 
+import com.sun.javafx.geom.Edge;
+import sun.reflect.generics.tree.Tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author Lenovo
  * @date 2023/8/7
@@ -30,6 +36,53 @@ public class LinkGraph {
         }
     }
 
+
+    /**
+     * 图的深度优先遍历
+     */
+
+    public void dfs(int i ,boolean[] isVisited){
+        System.out.println(graph[i]);
+        isVisited[i]= true;
+
+        EdgeNode neighbor=graph[i].neighbors;
+        //只要还有邻居节点：
+        while (neighbor!=null){
+            //只要没有访问过就需要继续访问：
+            if (!isVisited[neighbor.no]){
+                dfs(neighbor.no, isVisited);
+            }
+            neighbor=neighbor.next;
+        }
+    }
+
+    public void bfs(){
+        //初始化一个队列；先进先出
+        Queue<Integer> queue =new LinkedList<>();
+        boolean[] isVisited=new boolean[graph.length];
+
+        queue.offer(0);
+
+        while (!queue.isEmpty()){
+            int cur=queue.poll();//出队；
+
+            if (!isVisited[cur]){//false==>true;
+                System.out.println(graph[cur]);
+                isVisited[cur]=true;
+
+                EdgeNode edgeNode=graph[cur].neighbors;
+                while (edgeNode!=null){
+                    //如果没有加入先入队
+                    if (!isVisited[edgeNode.no]){
+                        queue.offer(edgeNode.no);
+                    }
+                    edgeNode=edgeNode.next;
+                }
+            }
+        }
+
+    }
+
     public void output() {
 
 
@@ -53,5 +106,9 @@ class Main{
 
         LinkGraph linkGraph = new LinkGraph(6,edges);
         linkGraph.output();
+
+        //初始化访问数组：
+        boolean[] isVisited=new boolean[6];
+        linkGraph.dfs(0,isVisited);
     }
 }
