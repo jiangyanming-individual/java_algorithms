@@ -6,7 +6,7 @@ package com.剑指offer;
  * @time 9:26
  * @project java_算法
  **/
-public class Offer_22_getKthFromEnd {
+public class Offer22_getKthFromEnd {
 
 
     //1.解法 顺序遍历：需要遍历n-k+1个才可以遍历到倒数第K个；
